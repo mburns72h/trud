@@ -125,95 +125,254 @@ print
 
 
 print("####################################################################")
-print("# Epics off track due to lack of owner:")
+print("# Blocked User Stories:")
+print("#")
+blocked = 0
+for card in next_cards:
+    label_names = [n["name"] for n in card["labels"]]
+    if "Blocked" in label_names and "USER_STORY" in label_names:
+        print_card(card)
+        blocked += 1
+print("#")
+print("# Summary: %d user stories are blocked" % blocked)
+print("####################################################################")
+print
+print
+
+
+print("####################################################################")
+print("# User Stories requiring PM input:")
+print("#")
+pm_input = 0
+for card in all_cards:
+    label_names = [n["name"] for n in card["labels"]]
+    if "PM Input needed" in label_names and "USER_STORY" in label_names:
+        print_card(card)
+        pm_input += 1
+print("#")
+print("# Summary: %d user stories require PM input" % pm_input)
+print("####################################################################")
+print
+print
+
+
+print("####################################################################")
+print("# User Stories off track due to lack of owner:")
 print("#")
 no_owner = 0
 for card in next_cards:
     label_names = [n["name"] for n in card["labels"]]
-    if card["idMembers"] == [] and "EPIC" in label_names:
+    if card["idMembers"] == [] and "USER_STORY" in label_names:
         print_card(card)
         no_owner += 1
 print("#")
-print("# Summary: %d epics are off track due to lack of owner" %
+print("# Summary: %d user stories are off track due to lack of owner" %
       no_owner)
 print("####################################################################")
 print
 print
 
 print("####################################################################")
-print("# Epics off track with an owner but not in progress:")
+print("# User Stories off track with an owner but not in progress:")
 print("#")
 not_in_progress = 0
 for card in next_cards:
     label_names = [n["name"] for n in card["labels"]]
-    if card["idMembers"] and "EPIC" in label_names:
+    if card["idMembers"] and "USER_STORY" in label_names:
         print_card(card)
         not_in_progress += 1
 print("#")
-print("# Summary: %d epics are off track due to not in progress" %
+print("# Summary: %d user stories are off track due to not in progress" %
       not_in_progress)
 print("####################################################################")
 print
 print
 
 print("####################################################################")
-print("# Epics otherwise off track:")
+print("# User Stories otherwise off track:")
 print("#")
 off_track = 0
 for card in in_progress_list_cards:
     label_names = [n["name"] for n in card["labels"]]
-    if "Off Track" in label_names and "EPIC" in label_names:
+    if "Off Track" in label_names and "USER_STORY" in label_names:
         print_card(card)
         off_track += 1
 print("#")
-print("# Summary: %d epics are otherwise off track" %
+print("# Summary: %d user stories are otherwise off track" %
       off_track)
 print("####################################################################")
 print
 print
 
 print("####################################################################")
-print("# Epics in progress: ")
+print("# User Stories in progress: ")
 print("#")
 in_progress = 0
 for card in in_progress_list_cards:
     label_names = [n["name"] for n in card["labels"]]
-    if "Off Track" not in label_names and "EPIC" in label_names:
+    if "Off Track" not in label_names and "USER_STORY" in label_names:
         print_card(card)
         in_progress += 1
 print("#")
-print("# Summary: %d epics are in progress" %
+print("# Summary: %d user stories are in progress" %
       in_progress)
 print("####################################################################")
 print
 print
 
 print("####################################################################")
-print("# Epics dev complete:")
+print("# User Stories dev complete:")
 print("#")
 dev_complete = 0
 for card in dev_complete_list_cards:
     label_names = [n["name"] for n in card["labels"]]
-    if "EPIC" in label_names:
+    if "USER_STORY" in label_names:
         print_card(card)
         dev_complete += 1
 print("#")
-print("# Summary: %d epics are dev complete" % dev_complete)
+print("# Summary: %d user stories are dev complete" % dev_complete)
 print("####################################################################")
 print
 print
 
 print("####################################################################")
-print("# Epics qe accepted:")
+print("# User Stories qe accepted:")
 print("#")
 qe_accepted = 0
 for card in qe_accepted_list_cards:
     label_names = [n["name"] for n in card["labels"]]
-    if "EPIC" in label_names:
+    if "USER_STORY" in label_names:
         print_card(card)
         qe_accepted += 1
 print("#")
-print("# Summary: %d epics are qe accepted" % qe_accepted)
+print("# Summary: %d user stories are qe accepted" % qe_accepted)
+print("####################################################################")
+print
+print
+
+
+print("####################################################################")
+print("# Blocked Bugs:")
+print("#")
+blocked = 0
+for card in next_cards:
+    label_names = [n["name"] for n in card["labels"]]
+    if "Blocked" in label_names and "BUG" in label_names:
+        print_card(card)
+        blocked += 1
+print("#")
+print("# Summary: %d bugs are blocked" % blocked)
+print("####################################################################")
+print
+print
+
+
+print("####################################################################")
+print("# Bugs requiring PM input:")
+print("#")
+pm_input = 0
+for card in all_cards:
+    label_names = [n["name"] for n in card["labels"]]
+    if "PM Input needed" in label_names and "BUG" in label_names:
+        print_card(card)
+        pm_input += 1
+print("#")
+print("# Summary: %d bugs require PM input" % pm_input)
+print("####################################################################")
+print
+print
+
+
+print("####################################################################")
+print("# Bugs off track due to lack of owner:")
+print("#")
+no_owner = 0
+for card in next_cards:
+    label_names = [n["name"] for n in card["labels"]]
+    if card["idMembers"] == [] and "BUG" in label_names:
+        print_card(card)
+        no_owner += 1
+print("#")
+print("# Summary: %d bugs are off track due to lack of owner" %
+      no_owner)
+print("####################################################################")
+print
+print
+
+print("####################################################################")
+print("# Bugs off track with an owner but not in progress:")
+print("#")
+not_in_progress = 0
+for card in next_cards:
+    label_names = [n["name"] for n in card["labels"]]
+    if card["idMembers"] and "BUG" in label_names:
+        print_card(card)
+        not_in_progress += 1
+print("#")
+print("# Summary: %d bugs are off track due to not in progress" %
+      not_in_progress)
+print("####################################################################")
+print
+print
+
+print("####################################################################")
+print("# Bugs otherwise off track:")
+print("#")
+off_track = 0
+for card in in_progress_list_cards:
+    label_names = [n["name"] for n in card["labels"]]
+    if "Off Track" in label_names and "BUG" in label_names:
+        print_card(card)
+        off_track += 1
+print("#")
+print("# Summary: %d bugs are otherwise off track" %
+      off_track)
+print("####################################################################")
+print
+print
+
+print("####################################################################")
+print("# Bugs in progress: ")
+print("#")
+in_progress = 0
+for card in in_progress_list_cards:
+    label_names = [n["name"] for n in card["labels"]]
+    if "Off Track" not in label_names and "BUG" in label_names:
+        print_card(card)
+        in_progress += 1
+print("#")
+print("# Summary: %d bugs are in progress" %
+      in_progress)
+print("####################################################################")
+print
+print
+
+print("####################################################################")
+print("# Bugs dev complete:")
+print("#")
+dev_complete = 0
+for card in dev_complete_list_cards:
+    label_names = [n["name"] for n in card["labels"]]
+    if "BUG" in label_names:
+        print_card(card)
+        dev_complete += 1
+print("#")
+print("# Summary: %d bugs are dev complete" % dev_complete)
+print("####################################################################")
+print
+print
+
+print("####################################################################")
+print("# Bugs qe accepted:")
+print("#")
+qe_accepted = 0
+for card in qe_accepted_list_cards:
+    label_names = [n["name"] for n in card["labels"]]
+    if "BUG" in label_names:
+        print_card(card)
+        qe_accepted += 1
+print("#")
+print("# Summary: %d bugs are qe accepted" % qe_accepted)
 print("####################################################################")
 print
 print
